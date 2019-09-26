@@ -116,30 +116,6 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
     return true;
 }
 
-void clear_punctuation(char *p) {
-    char *src = p, *dst = p;
-
-    while (*src) {
-        if (ispunct((unsigned char)*src)) {
-            // ignore
-            src++;
-        }
-        else if (src == dst) {
-            // same - increment
-            src++;
-            dst++;
-        }
-        else {
-            /* Copy character */
-            *dst++ = *src++;
-        }
-    }
-
-    *dst = 0;
-}
-
-
-
 int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 //    Set int num_misspelled to 0.
 //    While line in fp is not EOF (end of file):
@@ -155,17 +131,18 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
     int num_misspelled = 0;
     char buffer[LENGTH];
     char * token;
+    char * word;
     while (fgets(buffer, LENGTH, fp)) {
         token = strtok(buffer, " ");
 
         while (token != NULL) {
             printf("%s\n", token);
-            clear_punctuation(token);
-            if(!check_word(token, hashtable)) {
-                strcpy(*misspelled, token);
-                num_misspelled++;
-            }
-            printf("%s\n", token);
+            //word = clear_punctuation(token);
+            //if(!check_word(word, hashtable)) {
+                //strcpy(*misspelled, word);
+                //num_misspelled++;
+            //}
+            //printf("%s\n", word);
             token = strtok(NULL, " ");
         }
     }
