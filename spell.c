@@ -75,8 +75,11 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
             hashtable[bucket] = new_node;
         }
     }
-    // TODO - close file!
+    // close file
+    fclose(dict_file);
 
+    // assuming everything works, return true
+    return true;
 }
 
 int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
