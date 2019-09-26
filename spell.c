@@ -141,7 +141,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
             if(ispunct(token[strlen(token) - 1])) token[strlen(token) - 1] = 0;
 
             if(check_word(token, hashtable) == false) {
-                // TODO - copy token word to misspelled array
+                misspelled[num_misspelled] = token;
                 num_misspelled++;
             }
             token = strtok(NULL, " ");
