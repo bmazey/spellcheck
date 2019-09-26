@@ -59,7 +59,23 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
     FILE* dict_file = fopen(dictionary_file, "r");
     if(dict_file == NULL) return false;
 
-    // TODO - check for EOF
+    // iterate and add words to hashtable ... stop at EOF
+    char word[LENGTH + 1];
+    while (fscanf(dict_file, "%s", word) > 0) {
+        hashmap_t new_node = malloc(sizeof(node));
+        new_node->next = NULL;
+        strcpy(new_node->word, word);
+        int bucket = hash_function(new_node->word);
+
+        if(hashtable[bucket] == NULL) {
+            hashtable[bucket] = new_node;
+        }
+        else {
+            new_node->next = hashtable[bucket];
+            hashtable[bucket] = new_node;
+        }
+    }
+    // TODO - close file!
 
 }
 
