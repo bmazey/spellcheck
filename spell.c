@@ -136,7 +136,10 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 
         while (token != NULL) {
             printf("%s\n", token);
-            //word = clear_punctuation(token);
+            // clear punctuation
+            if(ispunct(token[0])) token++;
+            if(ispunct(token[strlen(token) - 1])) token[strlen(token) - 1] = 0;
+
             if(check_word(token, hashtable) == false) {
                 // TODO - copy token word to misspelled array
                 num_misspelled++;
