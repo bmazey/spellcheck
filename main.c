@@ -18,9 +18,12 @@ void printList(struct node* n)
 
 int main() {
     bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
-    printf(loaded ? "true" : "false");
+    //printf(loaded ? "true" : "false");
 
-    for(int i = 0; i < HASH_SIZE; i++) {
-        printList(hashmap[i]);
-    }
+    //for(int i = 0; i < HASH_SIZE; i++) {
+        //printList(hashmap[i]);
+    //}
+
+    bool exists = check_word("chAperon", hashmap);
+    printf(exists ? "true" : "false");
 }

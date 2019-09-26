@@ -32,6 +32,9 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 //    return True.
 //            Set curosr to cursor->next.
 //    return False.
+
+    printf("%s \n", word);
+
     int bucket = hash_function(word);
     hashmap_t cursor = hashtable[bucket];
     while(cursor != NULL) {
@@ -40,10 +43,15 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
     }
 
     // make lower case
-    char lower_case_word[strlen(word) + 1];
+    char lower_case_word[strlen(word)];
     for(int i = 0; i < strlen(word); i++) {
         lower_case_word[i] = tolower(word[i]);
     }
+
+    // add null character at end of string apparently ...
+    lower_case_word[strlen(word)] = '\0';
+
+    printf("%s \n", lower_case_word);
 
     // recalculate hash
     bucket = hash_function(lower_case_word);
