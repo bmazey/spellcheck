@@ -32,6 +32,31 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 //    return True.
 //            Set curosr to cursor->next.
 //    return False.
+    int bucket = hash_function(word);
+    hashmap_t cursor = hashtable[bucket];
+    while(cursor != NULL) {
+        if(strcmp(word, cursor->word) == 0) return true;
+        cursor = cursor->next;
+    }
+
+    // make lower case
+    char lower_case_word[strlen(word) + 1];
+    for(int i = 0; i < strlen(word); i++) {
+        lower_case_word[i] = tolower(word[i]);
+    }
+
+    // recalculate hash
+    bucket = hash_function(lower_case_word);
+    cursor = hashtable[bucket];
+
+    // check against new word
+    while(cursor != NULL) {
+        if(strcmp(lower_case_word, cursor->word) == 0) return true;
+        cursor = cursor->next;
+    }
+
+    // no possible match!
+    return false;
 }
 
 bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
