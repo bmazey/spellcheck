@@ -1,37 +1,21 @@
 //
 // Created by Brandon on 9/26/2019.
 //
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "dictionary.h"
 
 // global variables
 #define LENGTH 45
 #define HASH_SIZE 2000
 #define MAX_MISSPELLED 1000
 
-// defining our hashmap structure
-typedef struct node
-{
-    char word[LENGTH + 1];
-    struct node* next;
-}
-node;
-
 // defining hashmap pointer
 typedef node* hashmap_t;
 
-// hash function borrowed from dictionary.c
-int hash_function(const char* word)
-{
-    int sum = 0;
-    int word_length = strlen(word);
-
-    for (int i = 0; i < word_length; i++)
-    {
-        sum += word[i];
-    }
-
-    int bucket = sum % HASH_SIZE;
-    return bucket;
-}
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
 //    Set int bucket to the output of hash_function(word).
@@ -65,9 +49,20 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
 //    Set new_node->next to hashtable[bucket].
 //            Set hashtable[bucket] to new_node.
 //            Close dict_file.
+
+    // set all values in hashtable to null
+    for (int i = 0; i < HASH_SIZE; i++) {
+        hashtable[i] = NULL;
+    }
+
+    // open the file
+    FILE* dict_file = fopen(dictionary_file, "r");
+    if(dict_file == NULL) return false;
+    else return true;
+
 }
 
-function check_words(file fp, hashmap hashtable[], string misspelled[]) {
+int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 //    Set int num_misspelled to 0.
 //    While line in fp is not EOF (end of file):
 //    Read the line.
