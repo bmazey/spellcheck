@@ -58,7 +58,8 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
     // open the file
     FILE* dict_file = fopen(dictionary_file, "r");
     if(dict_file == NULL) return false;
-    else return true;
+
+    // TODO - check for EOF
 
 }
 
