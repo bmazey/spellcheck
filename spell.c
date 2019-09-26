@@ -33,7 +33,7 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 //            Set curosr to cursor->next.
 //    return False.
 
-    printf("%s \n", word);
+    //printf("%s \n", word);
 
     int bucket = hash_function(word);
     hashmap_t cursor = hashtable[bucket];
@@ -51,7 +51,7 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
     // add null character at end of string apparently ...
     lower_case_word[strlen(word)] = '\0';
 
-    printf("%s \n", lower_case_word);
+    //printf("%s \n", lower_case_word);
 
     // recalculate hash
     bucket = hash_function(lower_case_word);
@@ -131,18 +131,16 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
     int num_misspelled = 0;
     char buffer[LENGTH];
     char * token;
-    char * word;
     while (fgets(buffer, LENGTH, fp)) {
         token = strtok(buffer, " ");
 
         while (token != NULL) {
             printf("%s\n", token);
             //word = clear_punctuation(token);
-            //if(!check_word(word, hashtable)) {
-                //strcpy(*misspelled, word);
-                //num_misspelled++;
-            //}
-            //printf("%s\n", word);
+            if(check_word(token, hashtable) == false) {
+                // TODO - copy token word to misspelled array
+                num_misspelled++;
+            }
             token = strtok(NULL, " ");
         }
     }
