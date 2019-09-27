@@ -132,6 +132,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
     long size = 0;
     fseek(fp, 0L, SEEK_END);
     size = ftell(fp);
+    // reset file pointer
     fseek(fp, 0L, SEEK_SET);
 
     // add one to size to account for EOF character
