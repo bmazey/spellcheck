@@ -29,7 +29,7 @@ int main() {
         //printList(hashmap[i]);
     //}
 
-    bool exists = check_word("123a56", hashmap);
+    bool exists = check_word("12356", hashmap);
     printf(exists ? "true \n" : "false \n");
 
     // use below for WSL profile
@@ -43,6 +43,11 @@ int main() {
 
     // close the file
     fclose(test_file);
+
+    // TODO - write tests
+    // TODO - fix travis
+    // TODO - fuzz
+    // TODO - write report
 
     return 0;
 }
