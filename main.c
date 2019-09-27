@@ -18,7 +18,7 @@ void printList(struct node* n)
 }
 
 int main() {
-    bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
+    bool loaded = load_dictionary("/home/bmazey/wordlist.txt", hashmap);
     //printf(loaded ? "true" : "false");
 
     //for(int i = 0; i < HASH_SIZE; i++) {
@@ -28,13 +28,16 @@ int main() {
     bool exists = check_word("chAperon", hashmap);
     printf(exists ? "true \n" : "false \n");
 
-    FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
+    FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
 
     int num_misspelled = check_words(test_file, hashmap, misspelled);
     printf("%d \n", num_misspelled);
 
     // close the file
     fclose(test_file);
+
+    // TODO - Valgrind output
+    // TODO - Part 2 Writeup
 
     return 0;
 }
