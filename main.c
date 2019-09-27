@@ -29,6 +29,7 @@ int main() {
     printf(exists ? "true \n" : "false \n");
 
     FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
+
     int num_misspelled = check_words(test_file, hashmap, mispelled);
     printf("%d \n", num_misspelled);
 }
