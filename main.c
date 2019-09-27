@@ -18,7 +18,11 @@ void printList(struct node* n)
 }
 
 int main() {
-    bool loaded = load_dictionary("/home/bmazey/wordlist.txt", hashmap);
+    // use below for WSL profile
+    // bool loaded = load_dictionary("/home/bmazey/wordlist.txt", hashmap);
+
+    // default Cygwin profile
+    bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
     //printf(loaded ? "true" : "false");
 
     //for(int i = 0; i < HASH_SIZE; i++) {
@@ -28,7 +32,11 @@ int main() {
     bool exists = check_word("chAperon", hashmap);
     printf(exists ? "true \n" : "false \n");
 
-    FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
+    // use below for WSL profile
+    // FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
+
+    // default Cygwin profile
+    FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
 
     int num_misspelled = check_words(test_file, hashmap, misspelled);
     printf("%d \n", num_misspelled);

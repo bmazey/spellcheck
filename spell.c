@@ -19,22 +19,8 @@ typedef node* hashmap_t;
 
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
-//    Set int bucket to the output of hash_function(word).
-//            Set hashmap_t cursor equal to hashmap[bucket].
-//            While cursor is not NULL:
-//    If word equals cursor->word:
-//    return True.
-//            Set curosr to cursor->next.
-//            Set int bucket to the output of hash_function(word).
-//            Set hashmap_t cursor equal to hashmap[bucket].
-//            While cursor is  not NULL:
-//    If lower_case(word) equals curosr->word:
-//    return True.
-//            Set curosr to cursor->next.
-//    return False.
 
-    //printf("%s \n", word);
-
+    // start by computing hash
     int bucket = hash_function(word);
     hashmap_t cursor = hashtable[bucket];
     while(cursor != NULL) {
@@ -68,21 +54,6 @@ bool check_word(const char* word, hashmap_t hashtable[]) {
 }
 
 bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
-//    Initialize all values in hash table to NULL.
-//            Open dict_file from path stored in dictionary.
-//            If dict_file is NULL:
-//    return false.
-//            While word in dict_file is not EOF (end of file):
-//    Set hashmap_t new_node to a new node.
-//            Set new_node->next to NULL.
-//            Set new_node->word equal to word.
-//            Set int bucket to hash_function(word).
-//    if hashtable[bucket] is NULL:
-//    Set hashtable[bucket] to new_node.
-//    else:
-//    Set new_node->next to hashtable[bucket].
-//            Set hashtable[bucket] to new_node.
-//            Close dict_file.
 
     // set all values in hashtable to null
     for (int i = 0; i < HASH_SIZE; i++) {
@@ -117,16 +88,6 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
 }
 
 int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
-//    Set int num_misspelled to 0.
-//    While line in fp is not EOF (end of file):
-//    Read the line.
-//            Split the line on spaces.
-//            For each word in line:
-//    Remove punctuation from beginning and end of word.
-//            If not check_word(word):
-//    Append word to misspelled.
-//            Increment num_misspelled.
-//            Return num_misspelled.
 
     // get buffer size
     long size = 0;
