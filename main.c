@@ -6,7 +6,7 @@
 #include "dictionary.h"
 
 hashmap_t hashmap[HASH_SIZE];
-char * mispelled[MAX_MISSPELLED];
+char * misspelled[MAX_MISSPELLED];
 
 // helper function to print loaded dictionary hashtable list values
 void printList(struct node* n)
@@ -30,6 +30,6 @@ int main() {
 
     FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
 
-    int num_misspelled = check_words(test_file, hashmap, mispelled);
+    int num_misspelled = check_words(test_file, hashmap, misspelled);
     printf("%d \n", num_misspelled);
 }

@@ -128,12 +128,22 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 //            Increment num_misspelled.
 //            Return num_misspelled.
 
-    int num_misspelled = 0;
-    char buffer[LENGTH];
-    char * token;
-    while (fgets(buffer, LENGTH, fp)) {
-        token = strtok(buffer, " ");
+    // get buffer size
+    long size = 0;
+    fseek(fp, 0L, SEEK_END);
+    size = ftell(fp);
+    fseek(fp, 0L, SEEK_SET);
 
+    printf("size: %ld \n", size);
+
+    // add one to size to account for EOF character
+    int num_misspelled = 0;
+    char buffer[size + 1];
+    char * token;
+
+    while (fgets(buffer, (int)size + 1, fp)) {
+        token = strtok(buffer, " ");
+        printf("original token: %s \n", token);
         while (token != NULL) {
             // handle case where last token character ends in terminating bit
             if(token[strlen(token) - 1] == '\n') {
@@ -157,6 +167,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 
             // move to next token
             token = strtok(NULL, " ");
+            // printf("next token: %s \n", token);
         }
     }
 
