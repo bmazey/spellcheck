@@ -152,12 +152,12 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
             if(ispunct(token[0])) token++;
             if(ispunct(token[strlen(token) - 1])) {
                 token[strlen(token) - 1] = 0;
-                printf("new token: %s \n", token);
+                // printf("new token: %s \n", token);
             }
 
             // check if word exists in dictionary
             if(check_word(token, hashtable) == false) {
-                printf("misspelled! %s index: %d \n", token, num_misspelled);
+                // printf("misspelled! %s index: %d \n", token, num_misspelled);
                 misspelled[num_misspelled] = token;
                 num_misspelled++;
             }

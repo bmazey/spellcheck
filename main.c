@@ -30,6 +30,9 @@ int main() {
 
     FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
 
+    // close the file
+    fclose(test_file);
+
     int num_misspelled = check_words(test_file, hashmap, misspelled);
     printf("%d \n", num_misspelled);
 }
