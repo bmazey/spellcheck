@@ -135,36 +135,34 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
         token = strtok(buffer, " ");
 
         while (token != NULL) {
-            //printf("%s\n", token);
+            // handle case where last token character ends in terminating bit
+            if(token[strlen(token) - 1] == '\n') {
+                // chop off newline character
+                token[strlen(token) - 1] = 0;
+            }
+
             // clear punctuation
             if(ispunct(token[0])) token++;
             if(ispunct(token[strlen(token) - 1])) {
                 token[strlen(token) - 1] = 0;
                 printf("new token: %s \n", token);
             }
-            // handle case where last token character ends in terminating bit
-            if(token[strlen(token) - 1] == '\n') {
-                // chop off newline character
-                token[strlen(token) - 1] = 0;
-                if(ispunct(token[strlen(token) - 1])) {
-                    // chop off punctuation
-                    token[strlen(token) - 1] = 0;
-                    printf("special case token: %s \n", token);
-                }
-            }
 
+            // check if word exists in dictionary
             if(check_word(token, hashtable) == false) {
                 printf("misspelled! %s \n", token);
                 misspelled[num_misspelled] = token;
                 num_misspelled++;
             }
+
+            // move to next token
             token = strtok(NULL, " ");
         }
     }
 
     // print mispelled array
     for(int i = 0; i < num_misspelled; i++) {
-        printf("misspelled: %s \n", misspelled[i]);
+        printf("array item: %s \n", misspelled[i]);
     }
 
     return num_misspelled;
