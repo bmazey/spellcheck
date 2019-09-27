@@ -150,7 +150,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
 
             // check if word exists in dictionary
             if(check_word(token, hashtable) == false) {
-                printf("misspelled! %s \n", token);
+                printf("misspelled! %s index: %d \n", token, num_misspelled);
                 misspelled[num_misspelled] = token;
                 num_misspelled++;
             }
@@ -160,9 +160,9 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
         }
     }
 
-    // print mispelled array
+    // print misspelled array
     for(int i = 0; i < num_misspelled; i++) {
-        printf("array item: %s \n", misspelled[i]);
+        printf("array item: %s index: %d \n", misspelled[i], i);
     }
 
     return num_misspelled;
