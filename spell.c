@@ -20,9 +20,21 @@ typedef node* hashmap_t;
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
 
+    // edge case - if word is all digits, mark as true
+    bool digits = true;
+    for (int i = 0; i < strlen(word); i++) {
+        if (!isdigit(word[i])) {
+            digits = false;
+        }
+    }
+    // 'word' must be all digits
+    if (digits) return true;
+
     // start by computing hash
     int bucket = hash_function(word);
     hashmap_t cursor = hashtable[bucket];
+
+    // traverse the list in the event of a hash collision and compare words
     while(cursor != NULL) {
         if(strcmp(word, cursor->word) == 0) return true;
         cursor = cursor->next;

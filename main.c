@@ -29,7 +29,7 @@ int main() {
         //printList(hashmap[i]);
     //}
 
-    bool exists = check_word("chAperon", hashmap);
+    bool exists = check_word("123a56", hashmap);
     printf(exists ? "true \n" : "false \n");
 
     // use below for WSL profile
@@ -43,9 +43,6 @@ int main() {
 
     // close the file
     fclose(test_file);
-
-    // TODO - Valgrind output
-    // TODO - Part 2 Writeup
 
     return 0;
 }
