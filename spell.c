@@ -144,7 +144,6 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
             }
             // handle case where last token character ends in terminating bit
             if(token[strlen(token) - 1] == '\n') {
-                printf("special case triggered! \n");
                 // chop off newline character
                 token[strlen(token) - 1] = 0;
                 if(ispunct(token[strlen(token) - 1])) {
@@ -155,7 +154,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
             }
 
             if(check_word(token, hashtable) == false) {
-                printf("mispelled! %s \n", token);
+                printf("misspelled! %s \n", token);
                 misspelled[num_misspelled] = token;
                 num_misspelled++;
             }
