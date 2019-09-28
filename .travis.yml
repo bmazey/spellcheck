@@ -1,6 +1,7 @@
 language: c
 sudo: true
 install: sudo apt-get install check
+
 compiler:
   - clang
   - gcc
@@ -11,7 +12,6 @@ before_script:
   - cmake .
 
 script:
-  - make
-  - clang --coverage -O0 test_main.c -o test
+  - gcc -g test_main.c -o test 'pkg-config --cflags --libs check'
   - ./test
   - gcov test.c
