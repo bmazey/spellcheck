@@ -23,11 +23,7 @@ int main() {
 
     // default Cygwin profile
     bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
-    //printf(loaded ? "true" : "false");
-
-    //for(int i = 0; i < HASH_SIZE; i++) {
-        //printList(hashmap[i]);
-    //}
+    printf(loaded ? "true" : "false");
 
     bool exists = check_word("12356", hashmap);
     printf(exists ? "true \n" : "false \n");

@@ -110,8 +110,9 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
     return true;
 }
 
-int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
+int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
 
+    char* words[MAX_MISSPELLED];
     // get buffer size
     long size = 0;
     fseek(fp, 0L, SEEK_END);
@@ -122,7 +123,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
     // add one to size to account for EOF character
     int num_misspelled = 0;
     char buffer[size + 1];
-    char * token;
+    char* token;
 
     while (fgets(buffer, (int)size + 1, fp)) {
         token = strtok(buffer, " ");
@@ -143,7 +144,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
             // check if word exists in dictionary
             if(check_word(token, hashtable) == false) {
                 // printf("misspelled! %s index: %d \n", token, num_misspelled);
-                misspelled[num_misspelled] = token;
+                words[num_misspelled] = token;
                 num_misspelled++;
             }
 
@@ -153,9 +154,10 @@ int check_words(FILE* fp, hashmap_t hashtable[], char * misspelled[]) {
         }
     }
 
-    // print misspelled array
+    // copy words array to misspelled
     for(int i = 0; i < num_misspelled; i++) {
-        printf("array item: %s index: %d \n", misspelled[i], i);
+        // printf("array item: %s index: %d \n", words[i], i);
+        misspelled[i] = words[i];
     }
 
     return num_misspelled;
