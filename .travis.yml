@@ -1,6 +1,6 @@
 language: c
 sudo: true
-install: apt-get install check
+install: sudo apt-get install check
 compiler:
   - clang
   - gcc
