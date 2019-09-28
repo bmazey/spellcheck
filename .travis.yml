@@ -5,6 +5,9 @@ compiler:
   - clang
   - gcc
 script:
+  - cmake --version
+  - cmake CMakeLists.txt
+  - cmake  --build . --target neat
   - clang --coverage -O0 test_main.c -o test
   - ./test
   - gcov test.c
