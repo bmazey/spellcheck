@@ -12,6 +12,6 @@ before_script:
   - cmake .
 
 script:
-  - gcc -g test_main.c -o test 'pkg-config --cflags --libs check'
+  - gcc -g test_main.c -o test `pkg-config --cflags --libs check`
   - ./test
   - gcov test.c
