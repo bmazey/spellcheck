@@ -1,3 +1,10 @@
+language: c
+sudo: false
+install: make get-deps
 compiler:
-- clang
-- gcc
+  - clang
+  - gcc
+script:
+  - clang --coverage -O0 test_main.c -o test
+  - ./test
+  - gcov test.c
