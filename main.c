@@ -17,12 +17,22 @@ void printList(struct node* n)
     }
 }
 
-int main() {
+int main(int argc, char* argv[] ) {
     // use below for WSL profile
     // bool loaded = load_dictionary("/home/bmazey/wordlist.txt", hashmap);
 
+    // verify correct number of arguments (should take two text file paths)
+    if(argc < 3 || argc > 4) {
+        printf("Invalid number of arguments! %d \n", argc);
+        return 0;
+    }
+
+    // now using file paths as arguments ...
+
     // default Cygwin profile
-    bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
+    //bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
+
+    bool loaded = load_dictionary(argv[2], hashmap);
     printf(loaded ? "true" : "false");
 
     bool exists = check_word("12356", hashmap);
@@ -32,7 +42,10 @@ int main() {
     // FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
 
     // default Cygwin profile
-    FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
+    // FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
+
+    // using command line args ...
+    FILE* test_file = fopen(argv[1], "r");
 
     int num_misspelled = check_words(test_file, hashmap, misspelled);
     printf("%d \n", num_misspelled);
