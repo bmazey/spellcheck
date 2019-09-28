@@ -4,10 +4,14 @@ install: sudo apt-get install check
 compiler:
   - clang
   - gcc
-script:
+
+before_script:
   - cmake --version
   - cmake CMakeLists.txt
-  - cmake  --build .
+  - cmake .
+
+script:
+  - make
   - clang --coverage -O0 test_main.c -o test
   - ./test
   - gcov test.c
