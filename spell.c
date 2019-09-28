@@ -17,6 +17,17 @@
 // defining hashmap pointer
 typedef node* hashmap_t;
 
+// helper function to free hashmap after use
+void free_map(hashmap_t hashmap[]) {
+    for (int i = 0; i < HASH_SIZE; i++) {
+        node* current = hashtable[i];
+        while(current != NULL) {
+            node* temp = current;
+            current = current->next;
+            free(temp);
+        }
+    }
+}
 
 bool check_word(const char* word, hashmap_t hashtable[]) {
 

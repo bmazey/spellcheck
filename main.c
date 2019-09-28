@@ -44,6 +44,9 @@ int main() {
     // close the file
     fclose(test_file);
 
+    // free memory to clear Valgrind leak
+    free_map(hashmap);
+
     // TODO - write tests
     // TODO - fix travis
     // TODO - fuzz
