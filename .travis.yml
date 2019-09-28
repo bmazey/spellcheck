@@ -14,4 +14,4 @@ before_script:
 script:
   - gcc -g -fprofile-arcs -ftest-coverage test_main.c -o test `pkg-config --cflags --libs check`
   - ./test
-  - gcov -b test.c
+  - gcov -b -o test.c
