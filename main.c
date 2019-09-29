@@ -56,10 +56,5 @@ int main(int argc, char* argv[] ) {
     // free memory to clear Valgrind leak
     free_map(hashmap);
 
-    // TODO - write tests
-    // TODO - fix travis
-    // TODO - fuzz
-    // TODO - write report
-
     return 0;
 }
