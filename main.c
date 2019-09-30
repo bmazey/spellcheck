@@ -1,60 +1,30 @@
-//
-// Created by Brandon on 9/26/2019.
-//
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include "spell.c"
 #include "dictionary.h"
-
-hashmap_t hashmap[HASH_SIZE];
-char * misspelled[MAX_MISSPELLED];
-
-// helper function to print loaded dictionary hashtable list values
-void printList(struct node* n)
-{
-    while (n != NULL) {
-        printf(" %s \n", n->word);
-        n = n->next;
+#undef calculate
+#undef getrusage
+#define expected_size 118819
+// default dictionary
+#define DICTIONARY "wordlist.txt"
+#define BODICTIONARY "bo_wordlist.txt"
+#define MAX_MISSPELLED 1000
+int main(int argc, char** argv) {
+    hashmap_t hashtable[HASH_SIZE];
+    if (argc < 3) {
+        fprintf(stderr, "Error: Insufficient arguments!\n");
+        fprintf(stderr, "Usage: ./program to_check.txt wordlist.txt\n");
+        exit(-1);
     }
-}
-
-int main(int argc, char* argv[] ) {
-    // use below for WSL profile
-    // bool loaded = load_dictionary("/home/bmazey/wordlist.txt", hashmap);
-
-    // verify correct number of arguments (should take two text file paths)
-    if(argc < 3 || argc > 4) {
-        printf("Invalid number of arguments! %d \n", argc);
-        return 0;
+    char read_mode[2] = "r";
+    FILE* fp = fopen(argv[1], read_mode);
+    char * dictionary = argv[2]; 
+    load_dictionary(dictionary, hashtable);
+    char* misspelled[MAX_MISSPELLED];
+    int num_wrong = check_words(fp, hashtable, misspelled);
+    for (int i = 0; i < num_wrong; i++) {
+        printf("%s\n", misspelled[i]);
     }
-
-    // now using file paths as arguments ...
-
-    // default Cygwin profile
-    //bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
-
-    bool loaded = load_dictionary(argv[2], hashmap);
-    printf(loaded ? "true" : "false");
-
-    bool exists = check_word("12356", hashmap);
-    printf(exists ? "true \n" : "false \n");
-
-    // use below for WSL profile
-    // FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
-
-    // default Cygwin profile
-    // FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test1.txt", "r");
-
-    // using command line args ...
-    FILE* test_file = fopen(argv[1], "r");
-
-    int num_misspelled = check_words(test_file, hashmap, misspelled);
-    printf("%d \n", num_misspelled);
-
-    // close the file
-    fclose(test_file);
-
-    // free memory to clear Valgrind leak
-    free_map(hashmap);
-
-    return 0;
 }

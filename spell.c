@@ -7,7 +7,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "dictionary.h"
-#include "dictionary.c"
 
 // global variables
 #define LENGTH 45
@@ -20,7 +19,7 @@ typedef node* hashmap_t;
 // helper function to free hashmap after use
 void free_map(hashmap_t hashmap[]) {
     for (int i = 0; i < HASH_SIZE; i++) {
-        node* current = hashtable[i];
+        node* current = hashmap[i];
         while(current != NULL) {
             node* temp = current;
             current = current->next;
