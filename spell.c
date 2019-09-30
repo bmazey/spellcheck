@@ -112,6 +112,12 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
 
 int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
 
+    // check if file pointer is null
+    if (fp == NULL) {
+        printf("File cannot be loaded!");
+        exit(1);
+    }
+
     char* words[MAX_MISSPELLED];
     // get buffer size
     long size = 0;
@@ -146,6 +152,11 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
                 // printf("misspelled! %s index: %d \n", token, num_misspelled);
                 words[num_misspelled] = token;
                 num_misspelled++;
+
+                // check to make sure we haven't exceeded max
+                if (num_misspelled > MAX_MISSPELLED) {
+                    exit(1);
+                }
             }
 
             // move to next token
