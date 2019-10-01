@@ -88,11 +88,12 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]) {
     if(dict_file == NULL) return false;
 
     // iterate and add words to hashtable ... stop at EOF
-    char word[LENGTH];
+    char word[LENGTH + 1];
     while (fscanf(dict_file, "%s", word) > 0) {
         hashmap_t new_node = malloc(sizeof(node));
         new_node->next = NULL;
         strcpy(new_node->word, word);
+
         int bucket = hash_function(new_node->word);
 
         if(hashtable[bucket] == NULL) {
