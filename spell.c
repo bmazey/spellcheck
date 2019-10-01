@@ -114,7 +114,6 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
 
     // check if file pointer is null
     if (fp == NULL) {
-        printf("File cannot be loaded!");
         exit(1);
     }
 
