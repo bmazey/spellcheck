@@ -7,7 +7,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "dictionary.h"
-#include "dictionary.c"
 
 // global variables
 #define LENGTH 45
