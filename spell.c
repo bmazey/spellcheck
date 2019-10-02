@@ -118,7 +118,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
         exit(1);
     }
 
-    char* words[MAX_MISSPELLED];
+    char *words[MAX_MISSPELLED];
     // get buffer size
     long size = 0;
     fseek(fp, 0L, SEEK_END);
@@ -150,7 +150,9 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
             // check if word exists in dictionary
             if(check_word(token, hashtable) == false) {
                 // printf("misspelled! %s index: %d \n", token, num_misspelled);
-                words[num_misspelled] = token;
+                char *temp = malloc(10 * sizeof(token));
+                memmove(temp, token, 10* sizeof(token));
+                words[num_misspelled] = temp;
                 num_misspelled++;
 
                 // check to make sure we haven't exceeded max
@@ -167,8 +169,8 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
 
     // copy words array to misspelled
     for(int i = 0; i < num_misspelled; i++) {
-        // printf("array item: %s index: %d \n", words[i], i);
         misspelled[i] = words[i];
+        // printf("misspelled array item: %s index: %d \n", misspelled[i], i);
     }
 
     return num_misspelled;

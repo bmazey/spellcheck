@@ -33,7 +33,7 @@ int main(int argc, char* argv[] ) {
     //bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
 
     bool loaded = load_dictionary("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\wordlist.txt", hashmap);
-    printf(loaded ? "true" : "false");
+    printf(loaded ? "true " : "false");
 
     bool exists = check_word("12356", hashmap);
     printf(exists ? "true \n" : "false \n");
@@ -42,7 +42,7 @@ int main(int argc, char* argv[] ) {
     // FILE* test_file = fopen("/home/bmazey/test1.txt", "r");
 
     // default Cygwin profile
-    FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test6.txt", "r");
+    FILE* test_file = fopen("C:\\Users\\Brandon\\CLionProjects\\spellcheck\\test2.txt", "r");
 
     // using command line args ...
     // FILE* test_file = fopen(argv[1], "r");
