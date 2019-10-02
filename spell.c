@@ -151,7 +151,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]) {
             if(check_word(token, hashtable) == false) {
                 // printf("misspelled! %s index: %d \n", token, num_misspelled);
                 char *temp = malloc(10 * sizeof(token));
-                memmove(temp, token, 10* sizeof(token));
+                memmove(temp, token, 10 * sizeof(token));
                 words[num_misspelled] = temp;
                 num_misspelled++;
 
